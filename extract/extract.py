@@ -1,5 +1,5 @@
 import streamlit as st
-import PyPDF2
+import pdfplumber
 from io import BytesIO
 
 # Title of the web app
@@ -12,16 +12,15 @@ if uploaded_file is not None:
     # Convert the file to bytes
     bytes_data = BytesIO(uploaded_file.getvalue())
     
-    # Create a PDF file reader object
-    pdf_reader = PyPDF2.PdfFileReader(bytes_data)
-    
-    # Initialize an empty string for the PDF text
-    pdf_text = ""
-    
-    # Read the text from all pages
-    for page_number in range(pdf_reader.numPages):
-        page = pdf_reader.getPage(page_number)
-        pdf_text += page.extractText()
+    # Load the PDF with pdfplumber
+    with pdfplumber.open(bytes_data) as pdf:
+        # Initialize an empty string for the PDF text
+        pdf_text = ""
+        
+        # Read the text from all pages
+        for page in pdf.pages:
+            page_text = page.extract_text()
+            pdf_text += page_text + '\n'
     
     # Display the extracted text
     st.write(pdf_text)
