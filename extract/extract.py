@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env files
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = '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'
 
 # Title of the web app
 st.title("PDF Content Extractor")
