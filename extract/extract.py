@@ -35,10 +35,13 @@ if uploaded_file is not None:
 
     # Use OpenAI's GPT model to generate a completion based on the extracted text
     response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=pdf_text,
-        temperature=0.5,
-        max_tokens=100
+      model="text-davinci-003",
+      prompt=pdf_text,
+      temperature=0.7,
+      max_tokens=256,
+      top_p=1,
+      frequency_penalty=0,
+      presence_penalty=0
     )
 
     # Display the generated text
