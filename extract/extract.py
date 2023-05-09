@@ -2,9 +2,12 @@ import streamlit as st
 import pdfplumber
 import openai
 from io import BytesIO
+import os
+from dotenv import load_dotenv
 
-# Load OpenAI API Key
-openai.api_key = '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'
+# Load environment variables from .env file
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Title of the web app
 st.title("PDF Content Extractor")
