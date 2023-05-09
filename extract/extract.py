@@ -4,7 +4,7 @@ import openai
 from io import BytesIO
 
 # Load OpenAI API Key
-openai.api_key = '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'
+openai.api_key = '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'
 
 # Title of the web app
 st.title("PDF Content Extractor")
