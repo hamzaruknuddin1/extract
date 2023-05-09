@@ -1,10 +1,6 @@
 import streamlit as st
 import pdfplumber
-import openai
 from io import BytesIO
-
-# Load OpenAI API Key
-openai.api_key = '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'
 
 # Title of the web app
 st.title("PDF Content Extractor")
@@ -27,17 +23,4 @@ if uploaded_file is not None:
             pdf_text += page_text + '\n'
     
     # Display the extracted text
-    st.write('Extracted Text:')
     st.write(pdf_text)
-
-    # Use OpenAI's GPT model to generate a completion based on the extracted text
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=pdf_text,
-        temperature=0.5,
-        max_tokens=100
-    )
-
-    # Display the generated text
-    st.write('Generated Text:')
-    st.write(response.choices[0].text.strip())
